@@ -5,13 +5,15 @@ export default function RootLayout() {
       <Stack
             screenOptions={
               {
-              headerStyle: { backgroundColor: '#7ACDA8' }, 
-              headerTintColor: '#fff',  
+              headerShown: true,
+              headerTransparent: true,
               headerShadowVisible: false,
+              headerTitle: '',
+              headerBackVisible: true,
             }}> 
-          <Stack.Screen name="/(screens)/index" options={{ title: 'Home' }} />
-          <Stack.Screen name="/(screens)/word-of-day" options={{ title: 'Word of day' }} />
-          <Stack.Screen name="/(screens)/categories" options={{ title: 'Categories' }} />
+          <Stack.Screen name="/(screens)/index" options={{headerTitle: ''}} />
+          <Stack.Screen name="/(screens)/word-of-day" options={{headerTitle: '' }} />
+          <Stack.Screen name="/(screens)/categories" options={{ headerTitle: ''}} />
           <Stack.Screen name="+not-found" />
       </Stack>
   );

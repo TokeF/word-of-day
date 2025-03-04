@@ -1,75 +1,80 @@
-import { Link } from "expo-router";
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
-import s from "../styles";
+import { Link } from 'expo-router';
+import React from 'react';
+import { View, FlatList, TouchableOpacity, Text, SafeAreaView } from 'react-native';
+import { StyleSheet } from 'react-native';
 
-export default function Index() {
+
+const Index = () => {
   return (
-    <View style={s.defaultScreen}>
-      <TouchableOpacity style={styles.button} onPress={() => {}}>
-        <Link href="/(screens)/word-of-day" style={styles.link}>
-          <View style={styles.buttonContent}>
-            <Text style={styles.icon}>📅</Text>
-            <View style={styles.textContainer}>
-              <Text style={styles.additionalText}>Word of the day</Text>
-              <Text style={styles.buttonText}>Dinosaur</Text>
+    <SafeAreaView style={styles.container}>
+      <Link href="/word-of-day" asChild>
+        <TouchableOpacity style={styles.button} onPress={() => {}}>
+            <View style={styles.buttonContent}>
+              <Text style={styles.icon}>📅</Text>
+              <View style={styles.textContainer}>
+                <Text style={styles.extraText}>Word of the day</Text>
+                <Text style={styles.text}>Dinosaur</Text>
+              </View>
             </View>
-          </View>
-        </Link>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => {}}>
-        <Link href="/(screens)/categories" style={styles.link}>
-          <View style={styles.buttonContent}>
-            <Text style={styles.icon}>📚</Text>
-            <Text style={styles.buttonText}>Categories</Text>
-          </View>
-        </Link>
-      </TouchableOpacity>
-    </View>
+        </TouchableOpacity>
+      </Link>
+      <Link href="/categories" asChild>
+        <TouchableOpacity style={styles.button} onPress={() => {}}>
+            <View style={styles.buttonContent}>
+              <Text style={styles.icon}>📚</Text>
+              <View style={styles.textContainer}>
+                <Text style={styles.text}>Categories</Text>
+              </View>
+            </View>
+        </TouchableOpacity>
+      </Link>
+    </SafeAreaView>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  button: {
-    backgroundColor: '#f4511e',
-    padding: 20,
-    margin: 10,
-    borderRadius: 10,
+const styles = StyleSheet.create( {
+  container: {
+    flex: 1,
     alignItems: 'center',
-    width: '60%',
+    justifyContent: 'flex-start',
+    backgroundColor: '#7ACDA8',
+  },
+  button: {
+    backgroundColor: '#C2EFF5',
+    borderRadius: 10,
+    width: '80%',
+    height: 50,
+    marginBottom: 20,
+    justifyContent: 'center',
   },
   buttonContent: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '100%',
-  },
+    },
   icon: {
     flex: 1,
-    fontSize: 40,
-    textAlign: 'center',
+    fontSize: 30,
+    textAlign: 'center'
   },
   textContainer: {
-    flex: 4,
+    flex: 2,
     flexDirection: 'column',
-    alignItems: 'center',
+    backgroundColor: 'white'
   },
-  buttonText: {
-    flex: 4,
+  text: {
+    color: 'black',
     fontSize: 20,
-    color: '#fff',
     textAlign: 'center',
-    alignContent: "space-between"
+
   },
-  additionalText: {
-    flex: 1,
-    fontSize: 14,
-    color: '#fff',
+  extraText: {
     textAlign: 'center',
-    marginBottom: 10,
-  },
-  link: {
-    textDecorationLine: 'none',
-    width: '100%',
-    alignItems: 'center',
-  },
+    color: 'black',
+    fontFamily: 'Arial',
+    fontStyle: 'italic',
+    fontSize: 16,
+    },
 });
+
+export default Index;
