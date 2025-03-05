@@ -5,11 +5,26 @@ import { StyleSheet } from 'react-native';
 import { collection, getDocs } from "firebase/firestore";
 import {db} from '../../firebaseConfig.js'
 
+interface WordDocument {
+  category: string;
+  class: string;
+  created: Date;
+  description: string;
+  sentence: string;
+  word: string;
+}
+
 const fetchData = async () => {
-  const querySnapshot = await getDocs(collection(db, "users"));
-  querySnapshot.forEach((doc) => {
-    console.log(`${doc.id} => ${doc.data()}`);
-  });
+  try {
+    console.log("called fetchdata");
+    const querySnapshot = await getDocs(collection(db, "words"));
+    querySnapshot.forEach((doc) => {
+      const data = doc.data() as WordDocument
+      console.log(`${doc.id} => ${data.word}, ${data.description}, ${data.created}`);
+    });
+  } catch (error) {
+    console.error("Error fetching documents: ", error);
+  }
 };
 
 const Index = () => {
@@ -31,7 +46,7 @@ const Index = () => {
         </TouchableOpacity>
       </Link>
       <Link href="/categories" asChild>
-        <TouchableOpacity style={styles.button} onPress={() => {fetchData}}>
+        <TouchableOpacity style={styles.button} onPress={fetchData}>
             <View style={styles.buttonContent}>
               <Text style={styles.icon}>📚</Text>
               <View style={styles.textContainer}>
