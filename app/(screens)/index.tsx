@@ -1,16 +1,28 @@
 import { Link } from 'expo-router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, FlatList, TouchableOpacity, Text, SafeAreaView } from 'react-native';
 import { StyleSheet } from 'react-native';
+import { collection, getDocs } from "firebase/firestore";
+import {db} from '../../firebaseConfig.js'
 
+const fetchData = async () => {
+  const querySnapshot = await getDocs(collection(db, "users"));
+  querySnapshot.forEach((doc) => {
+    console.log(`${doc.id} => ${doc.data()}`);
+  });
+};
 
 const Index = () => {
+  
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <Link href="/word-of-day" asChild>
         <TouchableOpacity style={styles.button} onPress={() => {}}>
             <View style={styles.buttonContent}>
-              <Text style={styles.icon}>📅</Text>
               <View style={styles.textContainer}>
                 <Text style={styles.extraText}>Word of the day</Text>
                 <Text style={styles.text}>Dinosaur</Text>
@@ -19,7 +31,7 @@ const Index = () => {
         </TouchableOpacity>
       </Link>
       <Link href="/categories" asChild>
-        <TouchableOpacity style={styles.button} onPress={() => {}}>
+        <TouchableOpacity style={styles.button} onPress={() => {fetchData}}>
             <View style={styles.buttonContent}>
               <Text style={styles.icon}>📚</Text>
               <View style={styles.textContainer}>
