@@ -1,33 +1,25 @@
 import { Link } from 'expo-router';
-import React, { useEffect } from 'react';
-import { View, FlatList, TouchableOpacity, Text, SafeAreaView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, TouchableOpacity, Text, SafeAreaView } from 'react-native';
 import { StyleSheet } from 'react-native';
-import { collection, getDocs } from "firebase/firestore";
-import {db} from '../../firebaseConfig.js'
-
-interface WordDocument {
-  category: string;
-  class: string;
-  created: Date;
-  description: string;
-  sentence: string;
-  word: string;
-}
-
-const fetchData = async () => {
-  try {
-    console.log("called fetchdata");
-    const querySnapshot = await getDocs(collection(db, "words"));
-    querySnapshot.forEach((doc) => {
-      const data = doc.data() as WordDocument
-      console.log(`${doc.id} => ${data.word}, ${data.description}, ${data.created}`);
-    });
-  } catch (error) {
-    console.error("Error fetching documents: ", error);
-  }
-};
+import firebaseService from '../services/firebaseService';
+import WordDocument from '../models/WordDocument';
 
 const Index = () => {
+  const [words, setWords] = useState<WordDocument[]>([]);
+
+  const fetchData = async () => {
+    try {
+      console.log("called fetchdata");
+      const docs = await firebaseService.getDocuments('words');
+      setWords(docs)
+      docs.forEach((doc) => {
+        console.log(`${doc.id} => ${doc.word}, ${doc.description}, ${doc.created}`);
+      });
+    } catch (error) {
+      console.error("Error fetching documents: ", error);
+    }
+  };
   
   useEffect(() => {
     fetchData();

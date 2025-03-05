@@ -1,5 +1,6 @@
-import { db } from '../../firebaseConfig.js';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { db } from "../../firebaseConfig.js";
+import { collection, addDoc, getDocs } from "firebase/firestore";
+import WordDocument from "../models/WordDocument.js";
 
 // Firestore functions
 export const addDocument = async (collectionName: string, data: any) => {
@@ -14,7 +15,10 @@ export const addDocument = async (collectionName: string, data: any) => {
 export const getDocuments = async (collectionName: string) => {
   try {
     const querySnapshot = await getDocs(collection(db, collectionName));
-    const documents = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    const documents = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...(doc.data() as WordDocument),
+    }));
     return documents;
   } catch (error) {
     throw error;
