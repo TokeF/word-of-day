@@ -1,7 +1,13 @@
-import React from 'react';
+import { configureStore } from "@reduxjs/toolkit";
+import wordReducer from "./wordSlice";
 
-const Store = () => {
+const store = configureStore({
+  reducer: {
+    words: wordReducer,
+  },
+});
 
-};
+export type RootState = ReturnType<typeof store.getState>; // global state
+export type AppDispatch = typeof store.dispatch; // global dispatcher
 
-export default Store;
+export default store;

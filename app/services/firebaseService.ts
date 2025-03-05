@@ -1,6 +1,6 @@
-import { db } from "../../firebaseConfig.js";
-import { collection, addDoc, getDocs } from "firebase/firestore";
-import WordDocument from "../models/WordDocument.js";
+import { db } from "../../firebaseConfig";
+import { collection, addDoc, getDocs, Timestamp } from "firebase/firestore";
+import WordDocument from "../models/WordDocument";
 
 // Firestore functions
 export const addDocument = async (collectionName: string, data: any) => {
@@ -15,10 +15,13 @@ export const addDocument = async (collectionName: string, data: any) => {
 export const getDocuments = async (collectionName: string) => {
   try {
     const querySnapshot = await getDocs(collection(db, collectionName));
-    const documents = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...(doc.data() as WordDocument),
-    }));
+    const documents = querySnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        ...data,
+        created: (data.created as Timestamp).toDate().toISOString(), // Convert Timestamp to Date
+      } as WordDocument;
+    });
     return documents;
   } catch (error) {
     throw error;

@@ -1,7 +1,10 @@
 import { Stack } from "expo-router";
+import { Provider } from "react-redux";
+import store from "./store/store";
 
 export default function RootLayout() {
   return (
+    <Provider store={store}>
       <Stack
             screenOptions={
               {
@@ -16,5 +19,6 @@ export default function RootLayout() {
           <Stack.Screen name="(screens)/categories" options={{ headerTitle: ''}} />
           <Stack.Screen name="+not-found" />
       </Stack>
+    </Provider>
   );
 }
