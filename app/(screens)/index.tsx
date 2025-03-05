@@ -46,9 +46,8 @@ const Index = () => {
       <Link href="/categories" asChild>
         <TouchableOpacity style={styles.button}>
           <View style={styles.buttonContent}>
-            <Text style={styles.icon}>📚</Text>
             <View style={styles.textContainer}>
-              <Text style={styles.text}>Categories</Text>
+              <Text style={styles.text}>📚 Categories</Text>
             </View>
           </View>
         </TouchableOpacity>
@@ -85,7 +84,6 @@ const styles = StyleSheet.create({
   textContainer: {
     flex: 2,
     flexDirection: "column",
-    backgroundColor: "white",
   },
   text: {
     color: "black",
