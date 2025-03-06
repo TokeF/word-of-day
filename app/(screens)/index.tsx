@@ -15,15 +15,13 @@ import WordDocument from "../models/WordDocument";
 
 const Index = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { words, loading, error } = useSelector(
+  const { todaysWord, loading, error } = useSelector(
     (state: RootState) => state.words
   );
 
   useEffect(() => {
     dispatch(fetchWords());
   }, [dispatch]);
-
-  const todaysWord: WordDocument | undefined = words[0];
 
   return (
     <SafeAreaView style={styles.container}>

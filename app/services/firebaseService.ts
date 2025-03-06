@@ -19,7 +19,6 @@ export const getDocuments = async (collectionName: string) => {
       const data = doc.data();
       return {
         ...data,
-        created: (data.created as Timestamp).toDate().toISOString(), // Convert Timestamp to Date
       } as WordDocument;
     });
     return documents;

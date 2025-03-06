@@ -6,9 +6,7 @@ import { RootState } from '../store/store';
 import WordDocument from '../models/WordDocument';
 
 export default function WordOfDay() {
-  const { words } = useSelector((state: RootState) => state.words);
-  const todaysWord: WordDocument | undefined = words[0];
-
+  const { todaysWord } = useSelector((state: RootState) => state.words);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.frame}>
@@ -16,9 +14,9 @@ export default function WordOfDay() {
         {todaysWord ? (
           <>
             <Text style={styles.largeTitle}>{todaysWord.word}</Text>
-            <Text style={styles.class}>({todaysWord.class})</Text>
+            {todaysWord.class && <Text style={styles.class}>({todaysWord.class})</Text>}
             <Text style={styles.description}>{todaysWord.description}</Text>
-            <Text style={styles.sentence}>{todaysWord.example}</Text>
+            <Text style={styles.example}>"{todaysWord.example}"</Text>
             <Text style={styles.category}>Category: {todaysWord.category}</Text>
           </>
         ) : (
@@ -69,7 +67,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     paddingBottom: 40
   },
-  sentence: {
+  example: {
     fontSize: 18,
     color: '#000',
     textAlign: 'center',

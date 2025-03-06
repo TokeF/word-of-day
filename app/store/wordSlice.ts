@@ -2,16 +2,18 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import firebaseService from "../services/firebaseService";
 import WordDocument from "../models/WordDocument";
 
-interface WordState {
+interface WordsState {
   words: WordDocument[];
   loading: boolean;
   error: string | null;
+  todaysWord: WordDocument | null;
 }
 
-const initialState: WordState = {
+const initialState: WordsState = {
   words: [],
   loading: false,
   error: null,
+  todaysWord: null,
 };
 
 // Async thunk for fetching words from Firestore. This creates three actions: pending, fulfilled and rejected
@@ -36,6 +38,10 @@ const wordSlice = createSlice({
       .addCase(fetchWords.fulfilled, (state, action) => {
         state.loading = false;
         state.words = action.payload;
+        if (state.words.length > 0) {
+          state.todaysWord =
+            state.words[Math.floor(Math.random() * state.words.length)];
+        }
       })
       .addCase(fetchWords.rejected, (state, action) => {
         state.loading = false;
