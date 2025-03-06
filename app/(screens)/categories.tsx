@@ -25,22 +25,25 @@ export default function Categories() {
   return (
     <View style={styles.container}>
       <View style={styles.frame}>
-        {chipData.map((chip) => (
-          <Chip
-            key={chip.title}
-            selected={selectedChips.includes(chip.title)}
-            onPress={() => handleToggleChip(chip.title)}
-            style={[
-              styles.chip,
-              selectedChips.includes(chip.title) && styles.chipSelected,
-            ]}
-            showSelectedCheck={false}
-            icon={() => <Text style={styles.emoji}>{chip.icon}</Text>}
-            textStyle={styles.chipText}
-          >
-            {chip.title}
-          </Chip>
-        ))}
+        <Text style={styles.smallTitle}>Categories</Text>
+        <View style={styles.chipContainer}>
+          {chipData.map((chip) => (
+            <Chip
+              key={chip.title}
+              selected={selectedChips.includes(chip.title)}
+              onPress={() => handleToggleChip(chip.title)}
+              style={[
+                styles.chip,
+                selectedChips.includes(chip.title) && styles.chipSelected,
+              ]}
+              showSelectedCheck={false}
+              icon={() => <Text style={styles.emoji}>{chip.icon}</Text>}
+              textStyle={styles.chipText}
+            >
+              {chip.title}
+            </Chip>
+          ))}
+        </View>
       </View>
     </View>
   );
@@ -55,13 +58,22 @@ const styles = StyleSheet.create({
     paddingTop: 100,
   },
   frame: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
     backgroundColor: '#C2EFF5',
     padding: 20,
     borderRadius: 10,
     alignItems: 'center',
     width: '80%',
+  },
+  smallTitle: {
+    fontSize: 16,
+    fontStyle: 'italic',
+    color: '#000',
+    paddingBottom: 20
+  },
+  chipContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
   },
   chip: {
     margin: 5,
