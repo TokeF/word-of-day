@@ -19,6 +19,7 @@ export default function WordOfDay() {
             <Text style={styles.class}>({todaysWord.class})</Text>
             <Text style={styles.description}>{todaysWord.description}</Text>
             <Text style={styles.sentence}>{todaysWord.sentence}</Text>
+            <Text style={styles.category}>Category: {todaysWord.category}</Text>
           </>
         ) : (
           <Text style={styles.loadingText}>Loading...</Text>
@@ -74,9 +75,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     flexWrap: 'wrap',
     fontStyle: 'italic',
+    paddingBottom: 60
   },
   loadingText: {
     fontSize: 18,
+    color: '#000',
+  },
+  category: {
+    position: 'absolute',
+    bottom: 10,
+    left: 10,
+    fontSize: 12,
+    fontStyle: 'italic',
     color: '#000',
   },
 });
