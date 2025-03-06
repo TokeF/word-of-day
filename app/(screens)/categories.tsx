@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   chip: {
-    margin: 5,
+    margin: 6,
     backgroundColor: 'lightgrey', 
     borderRadius: 20,
     borderColor: 'lightgrey',
@@ -94,6 +94,6 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   emoji: {
-    fontSize: 28,
+    fontSize: 24,
   },
 });

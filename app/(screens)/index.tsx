@@ -35,7 +35,7 @@ const Index = () => {
               {loading ? (
                 <ActivityIndicator size="small" color="#0000ff" />
               ) : (
-                <Text style={styles.text}>
+                <Text style={styles.textDailyWord}>
                   {todaysWord ? todaysWord.word : "No word available"}
                 </Text>
               )}
@@ -47,7 +47,7 @@ const Index = () => {
         <TouchableOpacity style={styles.button}>
           <View style={styles.buttonContent}>
             <View style={styles.textContainer}>
-              <Text style={styles.text}>📚 Categories</Text>
+              <Text style={styles.textButton}>❤️ Categories</Text>
             </View>
           </View>
         </TouchableOpacity>
@@ -85,7 +85,13 @@ const styles = StyleSheet.create({
     flex: 2,
     flexDirection: "column",
   },
-  text: {
+  textDailyWord: {
+    color: "black",
+    fontSize: 20,
+    textAlign: "center",
+    fontWeight: 'bold'
+  },
+  textButton: {
     color: "black",
     fontSize: 20,
     textAlign: "center",

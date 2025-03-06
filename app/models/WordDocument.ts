@@ -3,6 +3,6 @@ export default interface WordDocument {
   class: string;
   created: string;
   description: string;
-  sentence: string;
+  example: string;
   word: string;
 }

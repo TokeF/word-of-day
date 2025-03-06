@@ -18,7 +18,7 @@ export default function WordOfDay() {
             <Text style={styles.largeTitle}>{todaysWord.word}</Text>
             <Text style={styles.class}>({todaysWord.class})</Text>
             <Text style={styles.description}>{todaysWord.description}</Text>
-            <Text style={styles.sentence}>{todaysWord.sentence}</Text>
+            <Text style={styles.sentence}>{todaysWord.example}</Text>
             <Text style={styles.category}>Category: {todaysWord.category}</Text>
           </>
         ) : (
