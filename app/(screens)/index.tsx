@@ -11,11 +11,10 @@ import { StyleSheet } from "react-native";
 import { RootState, AppDispatch } from "../store/store";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchWords } from "../store/wordSlice";
-import WordDocument from "../models/WordDocument";
 
 const Index = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { todaysWord, loading, error } = useSelector(
+  const { todaysWord, loading } = useSelector(
     (state: RootState) => state.words
   );
 
@@ -25,6 +24,8 @@ const Index = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+            <View style={styles.buttonWrapper}>
+
       <Link href="/word-of-day" asChild>
         <TouchableOpacity style={styles.button}>
           <View style={styles.buttonContent}>
@@ -45,11 +46,44 @@ const Index = () => {
         <TouchableOpacity style={styles.button}>
           <View style={styles.buttonContent}>
             <View style={styles.textContainer}>
-              <Text style={styles.textButton}>❤️ Categories</Text>
+            {/* 🎛️🔧🛠️ */}
+              <Text style={styles.textButton}>🏆 Challenge</Text>  
             </View>
           </View>
         </TouchableOpacity>
       </Link>
+      <View style={styles.buttonRow}>
+        <Link href="/categories" asChild>
+          <TouchableOpacity style={styles.rowButton}>
+            <View style={styles.buttonContent}>
+              <View style={styles.textContainer}>
+                <Text style={styles.textButton}>❤️ Favourites</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+        </Link>   
+        <View style={{flex:0.1}}></View>
+        <Link href="/categories" asChild>
+          <TouchableOpacity style={styles.rowButton}>
+            <View style={styles.buttonContent}>
+              <View style={styles.textContainer}>
+                <Text style={styles.textButton}>📚 History</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+        </Link>
+      </View>
+      <Link href="/categories" asChild>
+        <TouchableOpacity style={styles.button}>
+          <View style={styles.buttonContent}>
+            <View style={styles.textContainer}>
+            {/* 🎛️🔧🛠️ */}
+              <Text style={styles.textButton}>🎨 Categories</Text>  
+            </View>
+          </View>
+        </TouchableOpacity>
+      </Link>
+      </View>
     </SafeAreaView>
   );
 };
@@ -61,13 +95,29 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     backgroundColor: "#7ACDA8",
   },
+  buttonWrapper: {
+    flex: 1,
+    width: '80%',
+    flexDirection: 'column',
+    justifyContent: "flex-start",
+  },
   button: {
     backgroundColor: "#C2EFF5",
     borderRadius: 10,
-    width: "80%",
-    height: 50,
+    height: 70,
     marginBottom: 20,
     justifyContent: "center",
+  },
+  rowButton: {
+    flex: 1,
+    backgroundColor: "#C2EFF5",
+    borderRadius: 10,
+    height: 70
+  },
+  buttonRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 20
   },
   buttonContent: {
     flex: 1,
