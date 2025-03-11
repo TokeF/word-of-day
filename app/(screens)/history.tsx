@@ -3,6 +3,7 @@ import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import IWordDocument from '../models/WordDocument';
 import { useRouter } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const PreviousWordsScreen = () => {
   const [words, setWords] = useState<{[id: string]: IWordDocument}>({});
@@ -36,23 +37,34 @@ const PreviousWordsScreen = () => {
   );
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={Object.keys(words)}
-        renderItem={({ item }) => renderItem({ item })}
-        keyExtractor={(item) => item}
-        ListEmptyComponent={<Text>No previously seen words.</Text>}
-      />
-    </View>
+    <SafeAreaView style={styles.container}>
+        <View style={styles.frame}>
+            <FlatList
+            data={Object.keys(words)}
+            renderItem={({ item }) => renderItem({ item })}
+            keyExtractor={(item) => item}
+            ListEmptyComponent={<Text>No previously seen words.</Text>}
+        />
+        </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: '#fff',
-  },
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        backgroundColor: '#7ACDA8',
+        paddingTop: 100,
+        },
+    frame: {
+        backgroundColor: '#FDFD96',
+        padding: 20,
+        borderRadius: 10,
+        alignItems: 'flex-start',
+        width: '80%',
+        },
   item: {
     padding: 10,
     borderBottomWidth: 1,

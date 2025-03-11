@@ -51,7 +51,7 @@ export default function WordOfDay() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={[styles.frame, { backgroundColor: wordParam ? '#FFD700' : '#C2EFF5' }]}>
+      <View style={[styles.frame, { backgroundColor: wordParam ? '#FDFD96' : '#C2EFF5' }]}>
         <Text style={styles.smallTitle}>Today's Word</Text>
         {currentWord ? (
           <>
