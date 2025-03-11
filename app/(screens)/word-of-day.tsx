@@ -1,23 +1,65 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useRouter, useGlobalSearchParams } from 'expo-router';
 import WordDocument from '../models/WordDocument';
 
 export default function WordOfDay() {
   const { todaysWord } = useSelector((state: RootState) => state.words);
+  const [currentWord, setWord] = useState<WordDocument | null>(null);
+  const { word: wordParam } = useGlobalSearchParams<{ word: string }>();
+
+  useEffect(() => {
+    const fetchWordFromStorage = async () => {
+      if (wordParam) {
+        try {
+          const storedWords = await AsyncStorage.getItem('previousWords');
+          const previousWords = storedWords ? JSON.parse(storedWords) : {};
+          setWord(previousWords[wordParam] || null);
+        } catch (error) {
+          console.error('Failed to load word from storage:', error);
+        }
+      } else {
+        setWord(todaysWord);
+      }
+    };
+
+    fetchWordFromStorage();
+  }, [todaysWord, wordParam]);
+
+  useEffect(() => {
+    const saveWordToStorage = async () => {
+      if (todaysWord) {
+        try {
+          const storedWords = await AsyncStorage.getItem('previousWords');
+          const previousWords = storedWords ? JSON.parse(storedWords) : {};
+          if (!previousWords[todaysWord.word]) {
+            previousWords[todaysWord.word] = todaysWord;
+            await AsyncStorage.setItem('previousWords', JSON.stringify(previousWords));
+          }
+        } catch (error) {
+          console.error('Failed to save word to storage:', error);
+        }
+      }
+    };
+
+    saveWordToStorage();
+  }, [todaysWord]);
+
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.frame}>
+      <View style={[styles.frame, { backgroundColor: wordParam ? '#FFD700' : '#C2EFF5' }]}>
         <Text style={styles.smallTitle}>Today's Word</Text>
-        {todaysWord ? (
+        {currentWord ? (
           <>
-            <Text style={styles.largeTitle}>{todaysWord.word}</Text>
-            {todaysWord.class && <Text style={styles.class}>({todaysWord.class})</Text>}
-            <Text style={styles.description}>{todaysWord.description}</Text>
-            <Text style={styles.example}>"{todaysWord.example}"</Text>
-            <Text style={styles.category}>Category: {todaysWord.category}</Text>
+            <Text style={styles.largeTitle}>{currentWord.word}</Text>
+            {currentWord.class && <Text style={styles.class}>({currentWord.class})</Text>}
+            <Text style={styles.description}>{currentWord.description}</Text>
+            <Text style={styles.example}>"{currentWord.example}"</Text>
+            <Text style={styles.category}>Category: {currentWord.category}</Text>
           </>
         ) : (
           <Text style={styles.loadingText}>Loading...</Text>
@@ -36,7 +78,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#7ACDA8',
   },
   frame: {
-    backgroundColor: '#C2EFF5',
     padding: 20,
     borderRadius: 10,
     alignItems: 'center',

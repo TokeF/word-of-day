@@ -1,4 +1,4 @@
-export default interface WordDocument {
+export default interface IWordDocument {
   category: string;
   class: string;
   created: string;

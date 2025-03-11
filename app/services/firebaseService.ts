@@ -1,6 +1,6 @@
 import { db } from "../../firebaseConfig";
 import { collection, addDoc, getDocs, Timestamp } from "firebase/firestore";
-import WordDocument from "../models/WordDocument";
+import IWordDocument from "../models/WordDocument";
 
 // Firestore functions
 export const addDocument = async (collectionName: string, data: any) => {
@@ -19,7 +19,7 @@ export const getDocuments = async (collectionName: string) => {
       const data = doc.data();
       return {
         ...data,
-      } as WordDocument;
+      } as IWordDocument;
     });
     return documents;
   } catch (error) {

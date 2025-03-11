@@ -1,12 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import firebaseService from "../services/firebaseService";
-import WordDocument from "../models/WordDocument";
+import IWordDocument from "../models/WordDocument";
 
 interface WordsState {
-  words: WordDocument[];
+  words: IWordDocument[];
   loading: boolean;
   error: string | null;
-  todaysWord: WordDocument | null;
+  todaysWord: IWordDocument | null;
 }
 
 const initialState: WordsState = {

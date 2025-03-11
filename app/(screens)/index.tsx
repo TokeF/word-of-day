@@ -63,7 +63,7 @@ const Index = () => {
           </TouchableOpacity>
         </Link>   
         <View style={{flex:0.1}}></View>
-        <Link href="/categories" asChild>
+        <Link href="/history" asChild>
           <TouchableOpacity style={styles.rowButton}>
             <View style={styles.buttonContent}>
               <View style={styles.textContainer}>
