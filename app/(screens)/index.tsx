@@ -24,65 +24,64 @@ const Index = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-            <View style={styles.buttonWrapper}>
-
-      <Link href="/word-of-day" asChild>
-        <TouchableOpacity style={styles.button}>
-          <View style={styles.buttonContent}>
-            <View style={styles.textContainer}>
-              <Text style={styles.extraText}>Word of the day</Text>
-              {loading ? (
-                <ActivityIndicator size="small" color="#0000ff" />
-              ) : (
-                <Text style={styles.textDailyWord}>
-                  {todaysWord ? todaysWord.word : "No word available"}
-                </Text>
-              )}
-            </View>
-          </View>
-        </TouchableOpacity>
-      </Link>
-      <Link href="/categories" asChild>
-        <TouchableOpacity style={styles.button}>
-          <View style={styles.buttonContent}>
-            <View style={styles.textContainer}>
-            {/* 🎛️🔧🛠️ */}
-              <Text style={styles.textButton}>🏆 Challenge</Text>  
-            </View>
-          </View>
-        </TouchableOpacity>
-      </Link>
-      <View style={styles.buttonRow}>
-        <Link href="/categories" asChild>
-          <TouchableOpacity style={styles.rowButton}>
+      <View style={styles.buttonWrapper}>
+        <Link href="/word-of-day" asChild>
+          <TouchableOpacity style={styles.button}>
             <View style={styles.buttonContent}>
               <View style={styles.textContainer}>
-                <Text style={styles.textButton}>❤️ Favourites</Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-        </Link>   
-        <View style={{flex:0.1}}></View>
-        <Link href="/history" asChild>
-          <TouchableOpacity style={styles.rowButton}>
-            <View style={styles.buttonContent}>
-              <View style={styles.textContainer}>
-                <Text style={styles.textButton}>📚 History</Text>
+                <Text style={styles.extraText}>Word of the day</Text>
+                {loading ? (
+                  <ActivityIndicator size="small" color="#0000ff" />
+                ) : (
+                  <Text style={styles.textDailyWord}>
+                    {todaysWord ? todaysWord.word : "No word available"}
+                  </Text>
+                )}
               </View>
             </View>
           </TouchableOpacity>
         </Link>
-      </View>
-      <Link href="/categories" asChild>
-        <TouchableOpacity style={styles.button}>
-          <View style={styles.buttonContent}>
-            <View style={styles.textContainer}>
-            {/* 🎛️🔧🛠️ */}
-              <Text style={styles.textButton}>🎨 Categories</Text>  
+        <Link href="/categories" asChild>
+          <TouchableOpacity style={styles.button}>
+            <View style={styles.buttonContent}>
+              <View style={styles.textContainer}>
+                {/* 🎛️🔧🛠️ */}
+                <Text style={styles.textButton}>🏆 Challenge</Text>
+              </View>
             </View>
-          </View>
-        </TouchableOpacity>
-      </Link>
+          </TouchableOpacity>
+        </Link>
+        <View style={styles.buttonRow}>
+          <Link href="/categories" asChild>
+            <TouchableOpacity style={styles.rowButton}>
+              <View style={styles.buttonContent}>
+                <View style={styles.textContainer}>
+                  <Text style={styles.textButton}>❤️ Favourites</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+          </Link>
+          <View style={{ flex: 0.1 }}></View>
+          <Link href="/history" asChild>
+            <TouchableOpacity style={styles.rowButton}>
+              <View style={styles.buttonContent}>
+                <View style={styles.textContainer}>
+                  <Text style={styles.textButton}>📚 History</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+          </Link>
+        </View>
+        <Link href="/categories" asChild>
+          <TouchableOpacity style={styles.button}>
+            <View style={styles.buttonContent}>
+              <View style={styles.textContainer}>
+                {/* 🎛️🔧🛠️ */}
+                <Text style={styles.textButton}>🎨 Categories</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+        </Link>
       </View>
     </SafeAreaView>
   );
@@ -97,8 +96,8 @@ const styles = StyleSheet.create({
   },
   buttonWrapper: {
     flex: 1,
-    width: '80%',
-    flexDirection: 'column',
+    width: "80%",
+    flexDirection: "column",
     justifyContent: "flex-start",
   },
   button: {
@@ -112,12 +111,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#C2EFF5",
     borderRadius: 10,
-    height: 70
+    height: 70,
   },
   buttonRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 20
+    marginBottom: 20,
   },
   buttonContent: {
     flex: 1,
@@ -137,7 +136,7 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 20,
     textAlign: "center",
-    fontWeight: 'bold'
+    fontWeight: "bold",
   },
   textButton: {
     color: "black",

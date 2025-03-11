@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import { Chip } from 'react-native-paper';
+import React, { useState } from "react";
+import { Text, View, StyleSheet } from "react-native";
+import { Chip } from "react-native-paper";
 
 const chipData = [
-  { title: 'Science', icon: '🔬' },
-  { title: 'History', icon: '📚' },
-  { title: 'Math', icon: '🔢' },
-  { title: 'Youth', icon: '😎' },
-  { title: 'Curse Words', icon: '🔥' },
+  { title: "Science", icon: "🔬" },
+  { title: "History", icon: "📚" },
+  { title: "Math", icon: "🔢" },
+  { title: "Youth", icon: "😎" },
+  { title: "Curse Words", icon: "🔥" },
   // Add more chip data as needed
 ];
 
@@ -52,46 +52,46 @@ export default function Categories() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    backgroundColor: '#7ACDA8',
+    alignItems: "center",
+    justifyContent: "flex-start",
+    backgroundColor: "#7ACDA8",
     paddingTop: 100,
   },
   frame: {
-    backgroundColor: '#C2EFF5',
+    backgroundColor: "#C2EFF5",
     padding: 20,
     borderRadius: 10,
-    alignItems: 'center',
-    width: '80%',
+    alignItems: "center",
+    width: "80%",
   },
   smallTitle: {
     fontSize: 16,
-    fontStyle: 'italic',
-    color: '#000',
-    paddingBottom: 20
+    fontStyle: "italic",
+    color: "#000",
+    paddingBottom: 20,
   },
   chipContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'flex-start',
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "flex-start",
   },
   chip: {
     margin: 6,
-    backgroundColor: 'lightgrey', 
+    backgroundColor: "lightgrey",
     borderRadius: 20,
-    borderColor: 'lightgrey',
-    borderWidth: 0.5
+    borderColor: "lightgrey",
+    borderWidth: 0.5,
   },
   chipSelected: {
     margin: 5,
     borderRadius: 20,
-    backgroundColor: '#EDBFD6',
-    borderColor: 'black',
-    borderWidth: 0.5
+    backgroundColor: "#EDBFD6",
+    borderColor: "black",
+    borderWidth: 0.5,
   },
   chipText: {
     fontSize: 18,
-    color: '#000',
+    color: "#000",
   },
   emoji: {
     fontSize: 24,
