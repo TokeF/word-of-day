@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter, useGlobalSearchParams } from "expo-router";
 import WordDocument from "../models/WordDocument";
+import { FontAwesome } from "@expo/vector-icons";
 
 export default function WordOfDay() {
   const { todaysWord } = useSelector((state: RootState) => state.words);
   const [currentWord, setWord] = useState<WordDocument | null>(null);
+  const [favorites, setFavorites] = useState<{ [id: string]: WordDocument }>(
+    {}
+  );
   const { word: wordParam } = useGlobalSearchParams<{ word: string }>();
 
   useEffect(() => {
@@ -52,6 +56,39 @@ export default function WordOfDay() {
     saveWordToStorage();
   }, [todaysWord]);
 
+  useEffect(() => {
+    const fetchFavorites = async () => {
+      try {
+        const storedFavorites = await AsyncStorage.getItem("favoriteWords");
+        if (storedFavorites) {
+          setFavorites(JSON.parse(storedFavorites));
+        }
+      } catch (error) {
+        console.error("Failed to load favorite words from storage:", error);
+      }
+    };
+
+    fetchFavorites();
+  }, []);
+
+  const toggleFavorite = async () => {
+    if (currentWord) {
+      const updatedFavorites = { ...favorites };
+      if (favorites[currentWord.word]) {
+        delete updatedFavorites[currentWord.word];
+      } else {
+        updatedFavorites[currentWord.word] = currentWord;
+      }
+      setFavorites(updatedFavorites);
+      await AsyncStorage.setItem(
+        "favoriteWords",
+        JSON.stringify(updatedFavorites)
+      );
+    }
+  };
+
+  const isFavorite = currentWord && favorites[currentWord.word];
+
   return (
     <SafeAreaView style={styles.container}>
       <View
@@ -74,6 +111,16 @@ export default function WordOfDay() {
             <Text style={styles.category}>
               Category: {currentWord.category}
             </Text>
+            <TouchableOpacity
+              onPress={toggleFavorite}
+              style={styles.favoriteButton}
+            >
+              <FontAwesome
+                name={isFavorite ? "heart" : "heart-o"}
+                size={24}
+                color="#FF3D33"
+              />
+            </TouchableOpacity>
           </>
         ) : (
           <Text style={styles.loadingText}>Loading...</Text>
@@ -141,5 +188,10 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontStyle: "italic",
     color: "#000",
+  },
+  favoriteButton: {
+    position: "absolute",
+    top: 10,
+    right: 10,
   },
 });

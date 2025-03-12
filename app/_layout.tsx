@@ -24,6 +24,10 @@ export default function RootLayout() {
           options={{ headerTitle: "" }}
         />
         <Stack.Screen name="(screens)/history" options={{ headerTitle: "" }} />
+        <Stack.Screen
+          name="(screens)/favourites"
+          options={{ headerTitle: "" }}
+        />
         <Stack.Screen name="+not-found" />
       </Stack>
     </Provider>
