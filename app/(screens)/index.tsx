@@ -41,11 +41,10 @@ const Index = () => {
             </View>
           </TouchableOpacity>
         </Link>
-        <Link href="/categories" asChild>
+        <Link href="/challenge" asChild>
           <TouchableOpacity style={styles.button}>
             <View style={styles.buttonContent}>
               <View style={styles.textContainer}>
-                {/* 🎛️🔧🛠️ */}
                 <Text style={styles.textButton}>🏆 Challenge</Text>
               </View>
             </View>

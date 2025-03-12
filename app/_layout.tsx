@@ -23,6 +23,10 @@ export default function RootLayout() {
           name="(screens)/categories"
           options={{ headerTitle: "" }}
         />
+        <Stack.Screen
+          name="(screens)/challenge"
+          options={{ headerTitle: "" }}
+        />
         <Stack.Screen name="(screens)/history" options={{ headerTitle: "" }} />
         <Stack.Screen
           name="(screens)/favourites"
