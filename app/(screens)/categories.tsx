@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, SafeAreaView } from "react-native";
 import { Chip } from "react-native-paper";
+import { globalStyles } from "./style";
 
 const chipData = [
   { title: "Science", icon: "🔬" },
@@ -23,8 +24,8 @@ export default function Categories() {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.frame}>
+    <SafeAreaView style={globalStyles.container}>
+      <View style={[globalStyles.frame]}>
         <Text style={styles.smallTitle}>Categories</Text>
         <View style={styles.chipContainer}>
           {chipData.map((chip) => (
@@ -45,25 +46,11 @@ export default function Categories() {
           ))}
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "flex-start",
-    backgroundColor: "#7ACDA8",
-    paddingTop: 100,
-  },
-  frame: {
-    backgroundColor: "#C2EFF5",
-    padding: 20,
-    borderRadius: 10,
-    alignItems: "center",
-    width: "80%",
-  },
   smallTitle: {
     fontSize: 16,
     fontStyle: "italic",

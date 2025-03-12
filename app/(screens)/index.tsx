@@ -4,13 +4,14 @@ import {
   View,
   TouchableOpacity,
   Text,
-  SafeAreaView,
   ActivityIndicator,
+  SafeAreaView,
 } from "react-native";
 import { StyleSheet } from "react-native";
 import { RootState, AppDispatch } from "../store/store";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchWords } from "../store/wordSlice";
+import { globalStyles } from "./style";
 
 const Index = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -23,8 +24,8 @@ const Index = () => {
   }, [dispatch]);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.buttonWrapper}>
+    <SafeAreaView style={globalStyles.container}>
+      <View style={[styles.buttonWrapper]}>
         <Link href="/word-of-day" asChild>
           <TouchableOpacity style={styles.button}>
             <View style={styles.buttonContent}>
@@ -87,17 +88,10 @@ const Index = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "flex-start",
-    backgroundColor: "#7ACDA8",
-  },
   buttonWrapper: {
-    flex: 1,
     width: "80%",
-    flexDirection: "column",
     justifyContent: "flex-start",
+    marginTop: 20,
   },
   button: {
     backgroundColor: "#C2EFF5",

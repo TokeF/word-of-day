@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  SafeAreaView,
+} from "react-native";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useRouter, useGlobalSearchParams } from "expo-router";
+import { useGlobalSearchParams } from "expo-router";
 import WordDocument from "../models/WordDocument";
 import { FontAwesome } from "@expo/vector-icons";
+import { globalStyles, defaultColorSecondary } from "./style";
 
 export default function WordOfDay() {
   const { todaysWord } = useSelector((state: RootState) => state.words);
@@ -93,11 +99,11 @@ export default function WordOfDay() {
   const isFavorite = currentWord && favorites[currentWord.word];
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={globalStyles.container}>
       <View
         style={[
-          styles.frame,
-          { backgroundColor: colorParam ? colorParam : "#C2EFF5" },
+          globalStyles.frame,
+          { backgroundColor: colorParam ? colorParam : defaultColorSecondary },
         ]}
       >
         <Text style={styles.smallTitle}>
@@ -134,19 +140,6 @@ export default function WordOfDay() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 40,
-    alignItems: "center",
-    justifyContent: "flex-start",
-    backgroundColor: "#7ACDA8",
-  },
-  frame: {
-    padding: 20,
-    borderRadius: 10,
-    alignItems: "center",
-    width: "80%",
-  },
   smallTitle: {
     fontSize: 16,
     fontStyle: "italic",

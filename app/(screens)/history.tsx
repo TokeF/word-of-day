@@ -5,11 +5,12 @@ import {
   FlatList,
   StyleSheet,
   TouchableOpacity,
+  SafeAreaView,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import IWordDocument from "../models/WordDocument";
 import { useRouter } from "expo-router";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { globalStyles, pastelYellow } from "./style";
 
 const PreviousWordsScreen = () => {
   const [words, setWords] = useState<{ [id: string]: IWordDocument }>({});
@@ -35,7 +36,7 @@ const PreviousWordsScreen = () => {
   };
 
   const renderItem = ({ item }: { item: string }) => (
-    <TouchableOpacity onPress={() => handlePress(item, "#FDFD96")}>
+    <TouchableOpacity onPress={() => handlePress(item, pastelYellow)}>
       <View style={styles.item}>
         <Text style={styles.word}>{item}</Text>
       </View>
@@ -43,8 +44,8 @@ const PreviousWordsScreen = () => {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.frame}>
+    <SafeAreaView style={globalStyles.container}>
+      <View style={[globalStyles.frame, { backgroundColor: pastelYellow }]}>
         <FlatList
           style={{ width: "100%" }}
           data={Object.keys(words)}
@@ -58,21 +59,6 @@ const PreviousWordsScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "flex-start",
-    backgroundColor: "#7ACDA8",
-    paddingTop: 100,
-  },
-  frame: {
-    backgroundColor: "#FDFD96",
-    padding: 20,
-    marginBottom: 40,
-    borderRadius: 10,
-    alignItems: "flex-start",
-    width: "80%",
-  },
   item: {
     padding: 10,
     borderBottomWidth: 1,

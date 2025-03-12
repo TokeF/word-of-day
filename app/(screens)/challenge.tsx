@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  StyleSheet,
+  SafeAreaView,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import IWordDocument from "../models/WordDocument";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { globalStyles } from "./style";
 
 const ChallengeScreen = () => {
   const [words, setWords] = useState<{ [id: string]: IWordDocument }>({});
@@ -48,8 +55,8 @@ const ChallengeScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.frame}>
+    <SafeAreaView style={globalStyles.container}>
+      <View style={[globalStyles.frame]}>
         <Text style={styles.title}>Word Challenge</Text>
         {currentWord ? (
           <>
@@ -74,19 +81,6 @@ const ChallengeScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#7ACDA8",
-  },
-  frame: {
-    backgroundColor: "#C2EFF5",
-    padding: 20,
-    borderRadius: 10,
-    alignItems: "center",
-    width: "80%",
-  },
   title: {
     fontSize: 24,
     fontWeight: "bold",

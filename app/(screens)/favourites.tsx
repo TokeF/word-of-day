@@ -5,11 +5,12 @@ import {
   FlatList,
   StyleSheet,
   TouchableOpacity,
+  SafeAreaView,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import IWordDocument from "../models/WordDocument";
 import { router, useRouter } from "expo-router";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { globalStyles, pastelRed } from "./style";
 
 const FavouritesScreen = () => {
   const [favorites, setFavorites] = useState<{ [id: string]: IWordDocument }>(
@@ -36,7 +37,7 @@ const FavouritesScreen = () => {
   };
 
   const renderItem = ({ item }: { item: string }) => (
-    <TouchableOpacity onPress={() => handlePress(item, "#FF6961")}>
+    <TouchableOpacity onPress={() => handlePress(item, pastelRed)}>
       <View style={styles.item}>
         <Text style={styles.word}>{item}</Text>
       </View>
@@ -44,9 +45,10 @@ const FavouritesScreen = () => {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.frame}>
+    <SafeAreaView style={globalStyles.container}>
+      <View style={[globalStyles.frame, { backgroundColor: pastelRed }]}>
         <FlatList
+          style={{ width: "100%" }}
           data={Object.keys(favorites)}
           renderItem={({ item }) => renderItem({ item })}
           keyExtractor={(item) => item}
@@ -58,21 +60,6 @@ const FavouritesScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "flex-start",
-    backgroundColor: "#7ACDA8",
-    paddingTop: 100,
-  },
-  frame: {
-    backgroundColor: "#FF6961",
-    padding: 20,
-    marginBottom: 40,
-    borderRadius: 10,
-    alignItems: "flex-start",
-    width: "80%",
-  },
   item: {
     width: "100%",
     padding: 10,
