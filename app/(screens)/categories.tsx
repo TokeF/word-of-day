@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, SafeAreaView } from "react-native";
 import { Chip } from "react-native-paper";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { globalStyles } from "./style";
 
 const chipData = [
@@ -15,12 +16,37 @@ const chipData = [
 export default function Categories() {
   const [selectedChips, setSelectedChips] = useState<string[]>([]);
 
-  const handleToggleChip = (label: string) => {
-    setSelectedChips((prevSelectedChips) =>
-      prevSelectedChips.includes(label)
-        ? prevSelectedChips.filter((chip) => chip !== label)
-        : [...prevSelectedChips, label]
-    );
+  useEffect(() => {
+    const fetchSelectedChips = async () => {
+      try {
+        const storedChips = await AsyncStorage.getItem("selectedCategories");
+        if (storedChips) {
+          setSelectedChips(JSON.parse(storedChips));
+        }
+      } catch (error) {
+        console.error(
+          "Failed to load selected categories from storage:",
+          error
+        );
+      }
+    };
+
+    fetchSelectedChips();
+  }, []);
+
+  const handleToggleChip = async (label: string) => {
+    const updatedChips = selectedChips.includes(label)
+      ? selectedChips.filter((chip) => chip !== label)
+      : [...selectedChips, label];
+    setSelectedChips(updatedChips);
+    try {
+      await AsyncStorage.setItem(
+        "selectedCategories",
+        JSON.stringify(updatedChips)
+      );
+    } catch (error) {
+      console.error("Failed to save selected categories to storage:", error);
+    }
   };
 
   return (
@@ -66,15 +92,11 @@ const styles = StyleSheet.create({
     margin: 6,
     backgroundColor: "lightgrey",
     borderRadius: 20,
-    // borderColor: "lightgrey",
-    // borderWidth: 0.5,
   },
   chipSelected: {
     margin: 6,
     borderRadius: 20,
     backgroundColor: "#EDBFD6",
-    // borderColor: "black",
-    // borderWidth: 0.5,
   },
   chipText: {
     fontSize: 18,
