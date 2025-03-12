@@ -14,7 +14,10 @@ export default function WordOfDay() {
   const [favorites, setFavorites] = useState<{ [id: string]: WordDocument }>(
     {}
   );
-  const { word: wordParam } = useGlobalSearchParams<{ word: string }>();
+  const { word: wordParam, color: colorParam } = useGlobalSearchParams<{
+    word: string;
+    color: string;
+  }>();
 
   useEffect(() => {
     const fetchWordFromStorage = async () => {
@@ -94,7 +97,7 @@ export default function WordOfDay() {
       <View
         style={[
           styles.frame,
-          { backgroundColor: wordParam ? "#FDFD96" : "#C2EFF5" },
+          { backgroundColor: colorParam ? colorParam : "#C2EFF5" },
         ]}
       >
         <Text style={styles.smallTitle}>

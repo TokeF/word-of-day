@@ -30,12 +30,12 @@ const PreviousWordsScreen = () => {
     fetchWordsFromStorage();
   }, []);
 
-  const handlePress = (word: string) => {
-    router.push({ pathname: "/word-of-day", params: { word } });
+  const handlePress = (word: string, color: string) => {
+    router.push({ pathname: "/word-of-day", params: { word, color } });
   };
 
   const renderItem = ({ item }: { item: string }) => (
-    <TouchableOpacity onPress={() => handlePress(item)}>
+    <TouchableOpacity onPress={() => handlePress(item, "#FDFD96")}>
       <View style={styles.item}>
         <Text style={styles.word}>{item}</Text>
       </View>
@@ -46,7 +46,7 @@ const PreviousWordsScreen = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.frame}>
         <FlatList
-          style={{width: '100%'}}
+          style={{ width: "100%" }}
           data={Object.keys(words)}
           renderItem={({ item }) => renderItem({ item })}
           keyExtractor={(item) => item}

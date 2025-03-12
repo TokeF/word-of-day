@@ -31,12 +31,12 @@ const FavouritesScreen = () => {
     fetchFavoritesFromStorage();
   }, []);
 
-  const handlePress = (word: string) => {
-    router.push({ pathname: "/word-of-day", params: { word } });
+  const handlePress = (word: string, color: string) => {
+    router.push({ pathname: "/word-of-day", params: { word, color } });
   };
 
   const renderItem = ({ item }: { item: string }) => (
-    <TouchableOpacity onPress={() => handlePress(item)}>
+    <TouchableOpacity onPress={() => handlePress(item, "#FF6961")}>
       <View style={styles.item}>
         <Text style={styles.word}>{item}</Text>
       </View>
