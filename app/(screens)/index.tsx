@@ -11,7 +11,11 @@ import { StyleSheet } from "react-native";
 import { RootState, AppDispatch } from "../store/store";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchWords } from "../store/wordSlice";
-import { globalStyles } from "./style";
+import {
+  requestNotificationPermissions,
+  scheduleDailyNotification,
+} from "../../notificationConfig";
+import globalStyles from "./style";
 
 const Index = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -22,6 +26,17 @@ const Index = () => {
   useEffect(() => {
     dispatch(fetchWords());
   }, [dispatch]);
+
+  useEffect(() => {
+    // Request notification permissions
+    requestNotificationPermissions();
+
+    // Schedule a daily notification at 8 AM
+    scheduleDailyNotification(
+      "Daily Word Reminder",
+      "Check out the word of the day!"
+    );
+  }, []);
 
   return (
     <SafeAreaView style={globalStyles.container}>

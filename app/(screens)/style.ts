@@ -5,7 +5,7 @@ export const defaultColorSecondary = "#C2EFF5";
 export const pastelRed = "#FF6961";
 export const pastelYellow = "#FDFD96";
 
-export const globalStyles = StyleSheet.create({
+const globalStyles = StyleSheet.create({
   some: {},
   container: {
     flex: 1,
@@ -24,3 +24,5 @@ export const globalStyles = StyleSheet.create({
     marginTop: 20,
   },
 });
+
+export default globalStyles;

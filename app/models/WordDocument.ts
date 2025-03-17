@@ -1,4 +1,4 @@
-export default interface IWordDocument {
+interface IWordDocument {
   category: string;
   class: string;
   created: string;
@@ -6,3 +6,5 @@ export default interface IWordDocument {
   example: string;
   word: string;
 }
+
+export default IWordDocument;
