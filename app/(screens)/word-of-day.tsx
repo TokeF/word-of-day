@@ -12,7 +12,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useGlobalSearchParams } from "expo-router";
 import WordDocument from "../models/WordDocument";
 import { FontAwesome } from "@expo/vector-icons";
-import { globalStyles, defaultColorSecondary } from "./style";
+import globalStyles, { defaultColorSecondary } from "./style";
 
 export default function WordOfDay() {
   const { todaysWord } = useSelector((state: RootState) => state.words);

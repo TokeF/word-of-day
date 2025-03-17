@@ -9,8 +9,8 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import IWordDocument from "../models/WordDocument";
-import { router, useRouter } from "expo-router";
-import { globalStyles, pastelRed } from "./style";
+import { router } from "expo-router";
+import globalStyles, { pastelRed } from "./style";
 
 const FavouritesScreen = () => {
   const [favorites, setFavorites] = useState<{ [id: string]: IWordDocument }>(

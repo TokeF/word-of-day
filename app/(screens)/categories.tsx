@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, SafeAreaView } from "react-native";
 import { Chip } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { globalStyles } from "./style";
+import globalStyles from "./style";
 
 const chipData = [
   { title: "Science", icon: "🔬" },

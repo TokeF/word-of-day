@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import IWordDocument from "../models/WordDocument";
-import { globalStyles } from "./style";
+import globalStyles from "./style";
 
 const ChallengeScreen = () => {
   const [words, setWords] = useState<{ [id: string]: IWordDocument }>({});

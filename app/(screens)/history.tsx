@@ -10,7 +10,7 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import IWordDocument from "../models/WordDocument";
 import { useRouter } from "expo-router";
-import { globalStyles, pastelYellow } from "./style";
+import globalStyles, { pastelYellow } from "./style";
 
 const PreviousWordsScreen = () => {
   const [words, setWords] = useState<{ [id: string]: IWordDocument }>({});
