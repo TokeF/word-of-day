@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet, SafeAreaView } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import { Chip } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import globalStyles from "./style";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 const chipData = [
   { title: "Science", icon: "🔬" },
@@ -50,29 +51,31 @@ export default function Categories() {
   };
 
   return (
-    <SafeAreaView style={globalStyles.container}>
-      <View style={[globalStyles.frame]}>
-        <Text style={styles.smallTitle}>Categories</Text>
-        <View style={styles.chipContainer}>
-          {chipData.map((chip) => (
-            <Chip
-              key={chip.title}
-              selected={selectedChips.includes(chip.title)}
-              onPress={() => handleToggleChip(chip.title)}
-              style={[
-                styles.chip,
-                selectedChips.includes(chip.title) && styles.chipSelected,
-              ]}
-              showSelectedCheck={false}
-              icon={() => <Text style={styles.emoji}>{chip.icon}</Text>}
-              textStyle={styles.chipText}
-            >
-              {chip.title}
-            </Chip>
-          ))}
+    <SafeAreaProvider>
+      <SafeAreaView style={globalStyles.container}>
+        <View style={[globalStyles.frame]}>
+          <Text style={styles.smallTitle}>Categories</Text>
+          <View style={styles.chipContainer}>
+            {chipData.map((chip) => (
+              <Chip
+                key={chip.title}
+                selected={selectedChips.includes(chip.title)}
+                onPress={() => handleToggleChip(chip.title)}
+                style={[
+                  styles.chip,
+                  selectedChips.includes(chip.title) && styles.chipSelected,
+                ]}
+                showSelectedCheck={false}
+                icon={() => <Text style={styles.emoji}>{chip.icon}</Text>}
+                textStyle={styles.chipText}
+              >
+                {chip.title}
+              </Chip>
+            ))}
+          </View>
         </View>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 

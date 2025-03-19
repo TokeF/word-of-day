@@ -5,12 +5,12 @@ import {
   FlatList,
   StyleSheet,
   TouchableOpacity,
-  SafeAreaView,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import IWordDocument from "../models/WordDocument";
 import { useRouter } from "expo-router";
 import globalStyles, { pastelYellow } from "./style";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 const PreviousWordsScreen = () => {
   const [words, setWords] = useState<{ [id: string]: IWordDocument }>({});
@@ -44,17 +44,19 @@ const PreviousWordsScreen = () => {
   );
 
   return (
-    <SafeAreaView style={globalStyles.container}>
-      <View style={[globalStyles.frame, { backgroundColor: pastelYellow }]}>
-        <FlatList
-          style={{ width: "100%" }}
-          data={Object.keys(words)}
-          renderItem={({ item }) => renderItem({ item })}
-          keyExtractor={(item) => item}
-          ListEmptyComponent={<Text>No previously seen words.</Text>}
-        />
-      </View>
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <SafeAreaView style={globalStyles.container}>
+        <View style={[globalStyles.frame, { backgroundColor: pastelYellow }]}>
+          <FlatList
+            style={{ width: "100%" }}
+            data={Object.keys(words)}
+            renderItem={({ item }) => renderItem({ item })}
+            keyExtractor={(item) => item}
+            ListEmptyComponent={<Text>No previously seen words.</Text>}
+          />
+        </View>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 };
 

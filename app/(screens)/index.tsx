@@ -1,12 +1,6 @@
 import { Link } from "expo-router";
 import React, { useEffect } from "react";
-import {
-  View,
-  TouchableOpacity,
-  Text,
-  ActivityIndicator,
-  SafeAreaView,
-} from "react-native";
+import { View, TouchableOpacity, Text, ActivityIndicator } from "react-native";
 import { StyleSheet } from "react-native";
 import { RootState, AppDispatch } from "../store/store";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +10,7 @@ import {
   scheduleDailyNotification,
 } from "../../notificationConfig";
 import globalStyles from "./style";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 const Index = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -39,66 +34,68 @@ const Index = () => {
   }, []);
 
   return (
-    <SafeAreaView style={globalStyles.container}>
-      <View style={[styles.buttonWrapper]}>
-        <Link href="/word-of-day" asChild>
-          <TouchableOpacity style={styles.button}>
-            <View style={styles.buttonContent}>
-              <View style={styles.textContainer}>
-                <Text style={styles.extraText}>Word of the day</Text>
-                {loading ? (
-                  <ActivityIndicator size="small" color="#0000ff" />
-                ) : (
-                  <Text style={styles.textDailyWord}>
-                    {todaysWord ? todaysWord.word : "No word available"}
-                  </Text>
-                )}
-              </View>
-            </View>
-          </TouchableOpacity>
-        </Link>
-        <Link href="/challenge" asChild>
-          <TouchableOpacity style={styles.button}>
-            <View style={styles.buttonContent}>
-              <View style={styles.textContainer}>
-                <Text style={styles.textButton}>🏆 Challenge</Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-        </Link>
-        <View style={styles.buttonRow}>
-          <Link href="/favourites" asChild>
-            <TouchableOpacity style={styles.rowButton}>
+    <SafeAreaProvider>
+      <SafeAreaView style={globalStyles.container}>
+        <View style={[styles.buttonWrapper]}>
+          <Link href="/word-of-day" asChild>
+            <TouchableOpacity style={styles.button}>
               <View style={styles.buttonContent}>
                 <View style={styles.textContainer}>
-                  <Text style={styles.textButton}>❤️ Favourites</Text>
+                  <Text style={styles.extraText}>Word of the day</Text>
+                  {loading ? (
+                    <ActivityIndicator size="small" color="#0000ff" />
+                  ) : (
+                    <Text style={styles.textDailyWord}>
+                      {todaysWord ? todaysWord.word : "No word available"}
+                    </Text>
+                  )}
                 </View>
               </View>
             </TouchableOpacity>
           </Link>
-          <View style={{ flex: 0.1 }}></View>
-          <Link href="/history" asChild>
-            <TouchableOpacity style={styles.rowButton}>
+          <Link href="/challenge" asChild>
+            <TouchableOpacity style={styles.button}>
               <View style={styles.buttonContent}>
                 <View style={styles.textContainer}>
-                  <Text style={styles.textButton}>📚 History</Text>
+                  <Text style={styles.textButton}>🏆 Challenge</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+          </Link>
+          <View style={styles.buttonRow}>
+            <Link href="/favourites" asChild>
+              <TouchableOpacity style={styles.rowButton}>
+                <View style={styles.buttonContent}>
+                  <View style={styles.textContainer}>
+                    <Text style={styles.textButton}>❤️ Favourites</Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
+            </Link>
+            <View style={{ flex: 0.1 }}></View>
+            <Link href="/history" asChild>
+              <TouchableOpacity style={styles.rowButton}>
+                <View style={styles.buttonContent}>
+                  <View style={styles.textContainer}>
+                    <Text style={styles.textButton}>📚 History</Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
+            </Link>
+          </View>
+          <Link href="/categories" asChild>
+            <TouchableOpacity style={styles.button}>
+              <View style={styles.buttonContent}>
+                <View style={styles.textContainer}>
+                  {/* 🎛️🔧🛠️ */}
+                  <Text style={styles.textButton}>🎨 Categories</Text>
                 </View>
               </View>
             </TouchableOpacity>
           </Link>
         </View>
-        <Link href="/categories" asChild>
-          <TouchableOpacity style={styles.button}>
-            <View style={styles.buttonContent}>
-              <View style={styles.textContainer}>
-                {/* 🎛️🔧🛠️ */}
-                <Text style={styles.textButton}>🎨 Categories</Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-        </Link>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 };
 

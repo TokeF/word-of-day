@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  Button,
-  StyleSheet,
-  SafeAreaView,
-} from "react-native";
+import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import IWordDocument from "../models/WordDocument";
 import globalStyles from "./style";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 const ChallengeScreen = () => {
   const [words, setWords] = useState<{ [id: string]: IWordDocument }>({});
@@ -55,28 +49,30 @@ const ChallengeScreen = () => {
   };
 
   return (
-    <SafeAreaView style={globalStyles.container}>
-      <View style={[globalStyles.frame]}>
-        <Text style={styles.title}>Word Challenge</Text>
-        {currentWord ? (
-          <>
-            <Text style={styles.sentence}>
-              {getSentenceWithoutWord(currentWord.example, currentWord.word)}
-            </Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Enter the word"
-              value={input}
-              onChangeText={handleInputChange}
-            />
-            <Button title="Submit" onPress={handleSubmit} />
-            {message && <Text style={styles.message}>{message}</Text>}
-          </>
-        ) : (
-          <Text style={styles.loadingText}>Loading...</Text>
-        )}
-      </View>
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <SafeAreaView style={globalStyles.container}>
+        <View style={[globalStyles.frame]}>
+          <Text style={styles.title}>Word Challenge</Text>
+          {currentWord ? (
+            <>
+              <Text style={styles.sentence}>
+                {getSentenceWithoutWord(currentWord.example, currentWord.word)}
+              </Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Enter the word"
+                value={input}
+                onChangeText={handleInputChange}
+              />
+              <Button title="Submit" onPress={handleSubmit} />
+              {message && <Text style={styles.message}>{message}</Text>}
+            </>
+          ) : (
+            <Text style={styles.loadingText}>Loading...</Text>
+          )}
+        </View>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 };
 

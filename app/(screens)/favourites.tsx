@@ -5,12 +5,12 @@ import {
   FlatList,
   StyleSheet,
   TouchableOpacity,
-  SafeAreaView,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import IWordDocument from "../models/WordDocument";
 import { router } from "expo-router";
 import globalStyles, { pastelRed } from "./style";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 const FavouritesScreen = () => {
   const [favorites, setFavorites] = useState<{ [id: string]: IWordDocument }>(
@@ -45,17 +45,19 @@ const FavouritesScreen = () => {
   );
 
   return (
-    <SafeAreaView style={globalStyles.container}>
-      <View style={[globalStyles.frame, { backgroundColor: pastelRed }]}>
-        <FlatList
-          style={{ width: "100%" }}
-          data={Object.keys(favorites)}
-          renderItem={({ item }) => renderItem({ item })}
-          keyExtractor={(item) => item}
-          ListEmptyComponent={<Text>No favorite words.</Text>}
-        />
-      </View>
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <SafeAreaView style={globalStyles.container}>
+        <View style={[globalStyles.frame, { backgroundColor: pastelRed }]}>
+          <FlatList
+            style={{ width: "100%" }}
+            data={Object.keys(favorites)}
+            renderItem={({ item }) => renderItem({ item })}
+            keyExtractor={(item) => item}
+            ListEmptyComponent={<Text>No favorite words.</Text>}
+          />
+        </View>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 };
 
