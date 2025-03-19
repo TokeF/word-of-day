@@ -13,11 +13,14 @@
       "bundleIdentifier": "com.tokef.wordofday",
       "infoPlist": {
         "UIBackgroundModes": ["fetch", "remote-notification"]
+      },
+      "icon": {
+        "light": "./assets/images/ios-light.png"
       }
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/ios-light.png",
         "backgroundColor": "#ffffff",
         "permissions": ["NOTIFICATIONS"]
       },
