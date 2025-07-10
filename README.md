@@ -1,50 +1,42 @@
-# Welcome to your Expo app 👋
+# Word of the Day App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+The **Word of the Day** app is a React Native application designed to enhance gen-z vocabulary in a fun way. It provides users with a daily word, allows them to explore word history, favorite words, participate in challenges, and manage categories of interest.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **Daily Word**: Displays a new word every day with its definition, example sentence, and category.
+- **Word History**: View a list of previously displayed words.
+- **Favorites**: Mark words as favorites and access them in a dedicated screen.
+- **Word Challenge**: Test your knowledge by guessing the missing word in a sentence.
+- **Categories**: Select and manage categories of interest to personalize your experience.
+- **Local Storage**: Persist user preferences, word history, and favorites using AsyncStorage.
 
-   ```bash
-   npm install
-   ```
+## Tools and Tech Stack
 
-2. Start the app
+- **React Native**: Framework for building cross-platform mobile applications.
+- **Expo Router**: Simplified navigation and routing for React Native apps.
+- **Redux**: State management for handling global app state.
+- **AsyncStorage**: Local storage for persisting data.
+- **React Native Paper**: UI components for a polished and consistent design.
+- **TypeScript**: Strongly typed programming language for better code quality.
+- **Safe Area Context**: Ensures proper layout within safe areas on devices.
 
-   ```bash
-    npx expo start
-   ```
+## Screens Overview
 
-In the output, you'll find options to open the app in a
+1. **Word of the Day**: Displays the daily word or a selected word from history or favorites.
+2. **History**: Lists all previously displayed words.
+3. **Favorites**: Shows words marked as favorites.
+4. **Challenge**: Provides a word guessing game based on example sentences.
+5. **Categories**: Allows users to select and manage word categories.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Screenshots
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Here are some screenshots of the app:
 
-## Get a fresh project
+| Home                                                | Word of the Day                          |
+| --------------------------------------------------- | ---------------------------------------- |
+| ![Word of the Day](./assets/readme/main_screen.png) | ![Main Screen](./assets/readme/word.png) |
 
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+| Challenges                                  | Categories                                  |
+| ------------------------------------------- | ------------------------------------------- |
+| ![Challenge](./assets/readme/challenge.png) | ![Categories](./assets/readme/category.png) |
